@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee implements Serializable {
 
     @Id
@@ -60,5 +60,31 @@ public class Employee implements Serializable {
 
     public void setHeadquartersName(String headquartersName) {
         this.headquartersName = headquartersName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+
+        Employee employee = (Employee) o;
+
+        return getBsn() == employee.getBsn();
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getBsn();
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "bsn=" + bsn +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", headquartersName='" + headquartersName + '\'' +
+                '}';
     }
 }

@@ -15,11 +15,11 @@ CREATE SCHEMA IF NOT EXISTS `assignment` DEFAULT CHARACTER SET utf8 ;
 USE `assignment` ;
 
 -- -----------------------------------------------------
--- Table `assignment`.`Address`
+-- Table `assignment`.`Addresses`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `assignment`.`Address` ;
+DROP TABLE IF EXISTS `assignment`.`Addresses` ;
 
-CREATE TABLE IF NOT EXISTS `assignment`.`Address` (
+CREATE TABLE IF NOT EXISTS `assignment`.`Addresses` (
   `country` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NULL,
   `street` VARCHAR(45) NULL,
@@ -30,11 +30,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `assignment`.`Project`
+-- Table `assignment`.`Projects`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `assignment`.`Project` ;
+DROP TABLE IF EXISTS `assignment`.`Projects` ;
 
-CREATE TABLE IF NOT EXISTS `assignment`.`Project` (
+CREATE TABLE IF NOT EXISTS `assignment`.`Projects` (
   `id` INT NOT NULL,
   `budget` DOUBLE NULL,
   `allocatedhours` INT NULL,
@@ -51,35 +51,35 @@ CREATE TABLE IF NOT EXISTS `assignment`.`Headquarters` (
   `name` VARCHAR(45) NOT NULL,
   `rooms` INT NULL,
   `rent` DECIMAL(4) NULL,
-  `Address_country` VARCHAR(45) NOT NULL,
-  `Address_postal code` VARCHAR(45) NOT NULL,
-  `Project_id` INT NOT NULL,
+  `Address_country` VARCHAR(45) NULL,
+  `Address_postal code` VARCHAR(45) NULL,
+  `Project_id` INT NULL,
   PRIMARY KEY (`name`),
   INDEX `fk_Headquarters_Adress1_idx` (`Address_country` ASC, `Address_postal code` ASC),
   INDEX `fk_Headquarters_Project1_idx` (`Project_id` ASC),
   CONSTRAINT `fk_Headquarters_Adress1`
     FOREIGN KEY (`Address_country` , `Address_postal code`)
-    REFERENCES `assignment`.`Address` (`country` , `postal code`)
+    REFERENCES `assignment`.`Addresses` (`country` , `postal code`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Headquarters_Project1`
     FOREIGN KEY (`Project_id`)
-    REFERENCES `assignment`.`Project` (`id`)
+    REFERENCES `assignment`.`Projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `assignment`.`Employee`
+-- Table `assignment`.`Employees`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `assignment`.`Employee` ;
+DROP TABLE IF EXISTS `assignment`.`Employees` ;
 
-CREATE TABLE IF NOT EXISTS `assignment`.`Employee` (
+CREATE TABLE IF NOT EXISTS `assignment`.`Employees` (
   `bsn` INT(10) NOT NULL,
   `name` VARCHAR(45) NULL,
-  `surename` VARCHAR(45) NULL,
-  `Headquarters_name` VARCHAR(45) NOT NULL,
+  `surname` VARCHAR(45) NULL,
+  `Headquarters_name` VARCHAR(45) NULL,
   PRIMARY KEY (`bsn`),
   INDEX `fk_Employee_Headquarters1_idx` (`Headquarters_name` ASC),
   CONSTRAINT `fk_Employee_Headquarters1`
@@ -106,12 +106,12 @@ CREATE TABLE IF NOT EXISTS `assignment`.`Employee_has_position_in_Project` (
   INDEX `fk_Position_in_Project1_idx` (`Project_id` ASC),
   CONSTRAINT `fk_Position_Employee1`
     FOREIGN KEY (`Employee_bsn`)
-    REFERENCES `assignment`.`Employee` (`bsn`)
+    REFERENCES `assignment`.`Employees` (`bsn`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Position_in_Project1`
     FOREIGN KEY (`Project_id`)
-    REFERENCES `assignment`.`Project` (`id`)
+    REFERENCES `assignment`.`Projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `assignment`.`Employee_has_Degrees` (
   INDEX `fk_Employee_has_Degrees_Employee1_idx` (`Employee_bsn` ASC),
   CONSTRAINT `fk_Employee_has_Degrees_Employee1`
     FOREIGN KEY (`Employee_bsn`)
-    REFERENCES `assignment`.`Employee` (`bsn`)
+    REFERENCES `assignment`.`Employees` (`bsn`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Employee_has_Degrees_Degrees1`
@@ -168,12 +168,12 @@ CREATE TABLE IF NOT EXISTS `assignment`.`Employee_lives_at_Address` (
   INDEX `fk_Lives_at_Adress1_idx` (`Adress_country` ASC, `Adress_postal code` ASC),
   CONSTRAINT `fk_Lives_at_Employee1`
     FOREIGN KEY (`Employee_bsn`)
-    REFERENCES `assignment`.`Employee` (`bsn`)
+    REFERENCES `assignment`.`Employees` (`bsn`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Lives_at_Adress1`
     FOREIGN KEY (`Adress_country` , `Adress_postal code`)
-    REFERENCES `assignment`.`Address` (`country` , `postal code`)
+    REFERENCES `assignment`.`Addresses` (`country` , `postal code`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
