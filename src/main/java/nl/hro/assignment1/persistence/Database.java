@@ -1,6 +1,14 @@
 package nl.hro.assignment1.persistence;
 
+import nl.hro.assignment1.model.Address;
+import nl.hro.assignment1.model.Degree;
 import nl.hro.assignment1.model.Employee;
+import nl.hro.assignment1.model.EmployeeAddress;
+import nl.hro.assignment1.model.EmployeeDegree;
+import nl.hro.assignment1.model.EmployeePositionProject;
+import nl.hro.assignment1.model.Headquarter;
+import nl.hro.assignment1.model.Position;
+import nl.hro.assignment1.model.Project;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -26,7 +34,15 @@ public class Database {
         StandardServiceRegistry standardServiceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build(); //
 
         this.sessionFactory = configuration // Create the session factory with all the tables
-                .addAnnotatedClass(Employee.class) // Each anotated class can be added in a chain
+                .addAnnotatedClass(Address.class) // Each anotated class can be added in a chain
+                .addAnnotatedClass(Degree.class)
+                .addAnnotatedClass(Project.class)
+                .addAnnotatedClass(Headquarter.class)
+                .addAnnotatedClass(Position.class)
+                .addAnnotatedClass(Employee.class)
+                .addAnnotatedClass(EmployeeDegree.class)
+                .addAnnotatedClass(EmployeePositionProject.class)
+                .addAnnotatedClass(EmployeeAddress.class)
                 .buildSessionFactory(standardServiceRegistry); // Build the session factory
     };
 

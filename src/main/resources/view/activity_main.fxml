@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<Pane prefHeight="600.0" prefWidth="800.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.hro.assignment1.controller.MainController">
+
+    <stylesheets>
+        <!-- <URL value="@../styles/stylingTemplate.css" /> -->
+    </stylesheets>
+   <children>
+      <Label layoutX="57.0" layoutY="44.0" text="Employee">
+         <font>
+            <Font name="Comic Sans MS" size="35.0" />
+         </font>
+      </Label>
+      <Button layoutX="57.0" layoutY="122.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="50.0" prefWidth="152.0" text="Add">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="57.0" layoutY="185.0" mnemonicParsing="false" onAction="#updateEmployee" prefHeight="50.0" prefWidth="152.0" text="Update">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="57.0" layoutY="248.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="50.0" prefWidth="152.0" text="Delete">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="57.0" layoutY="394.0" mnemonicParsing="false" onAction="#addProject" prefHeight="50.0" prefWidth="152.0" text="Add">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="57.0" layoutY="457.0" mnemonicParsing="false" onAction="#updateProject" prefHeight="50.0" prefWidth="152.0" text="Update">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="72.0" layoutY="315.0" text="Project">
+         <font>
+            <Font name="Comic Sans MS" size="35.0" />
+         </font>
+      </Label>
+      <Button layoutX="57.0" layoutY="520.0" mnemonicParsing="false" onAction="#deleteProject" prefHeight="50.0" prefWidth="152.0" text="Delete">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="339.0" layoutY="45.0" text="Address">
+         <font>
+            <Font name="Comic Sans MS" size="35.0" />
+         </font>
+      </Label>
+      <Button layoutX="324.0" layoutY="187.0" mnemonicParsing="false" onAction="#updateAddress" prefHeight="50.0" prefWidth="152.0" text="Update">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="324.0" layoutY="250.0" mnemonicParsing="false" onAction="#deleteAddress" prefHeight="50.0" prefWidth="152.0" text="Delete">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="324.0" layoutY="124.0" mnemonicParsing="false" onAction="#addAddress" prefHeight="50.0" prefWidth="152.0" text="Add">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="587.0" layoutY="316.0" text="Position">
+         <font>
+            <Font name="Comic Sans MS" size="35.0" />
+         </font>
+      </Label>
+      <Button layoutX="572.0" layoutY="123.0" mnemonicParsing="false" onAction="#addDegree" prefHeight="50.0" prefWidth="152.0" text="Add">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="572.0" layoutY="458.0" mnemonicParsing="false" onAction="#updatePosition" prefHeight="50.0" prefWidth="152.0" text="Update">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="572.0" layoutY="521.0" mnemonicParsing="false" onAction="#deletePosition" prefHeight="50.0" prefWidth="152.0" text="Delete">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="572.0" layoutY="395.0" mnemonicParsing="false" onAction="#addPosition" prefHeight="50.0" prefWidth="152.0" text="Add">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="572.0" layoutY="186.0" mnemonicParsing="false" onAction="#updateDegree" prefHeight="50.0" prefWidth="152.0" text="Update">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="572.0" layoutY="249.0" mnemonicParsing="false" onAction="#deleteDegree" prefHeight="50.0" prefWidth="152.0" text="Delete">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="572.0" layoutY="45.0" text="Degree">
+         <font>
+            <Font name="Comic Sans MS" size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="287.0" layoutY="315.0" text="Headquarters">
+         <font>
+            <Font name="Comic Sans MS" size="35.0" />
+         </font>
+      </Label>
+      <Button layoutX="324.0" layoutY="397.0" mnemonicParsing="false" onAction="#addHeadquarter" prefHeight="50.0" prefWidth="152.0" text="Add">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="324.0" layoutY="523.0" mnemonicParsing="false" onAction="#deleteHeadquarter" prefHeight="50.0" prefWidth="152.0" text="Delete">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="324.0" layoutY="460.0" mnemonicParsing="false" onAction="#updateHeadquarter" prefHeight="50.0" prefWidth="152.0" text="Update">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

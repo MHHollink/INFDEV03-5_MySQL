@@ -91,29 +91,15 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `assignment`.`Employee_has_position_in_Project`
+-- Table `assignment`.`Positions`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `assignment`.`Employee_has_position_in_Project` ;
+DROP TABLE IF EXISTS `assignment`.`Positions` ;
 
-CREATE TABLE IF NOT EXISTS `assignment`.`Employee_has_position_in_Project` (
+CREATE TABLE IF NOT EXISTS `assignment`.`Positions` (
   `name` VARCHAR(45) NOT NULL,
   `description` LONGTEXT NULL,
-  `feeperhour` VARCHAR(45) NULL,
-  `Employee_bsn` INT(10) NOT NULL,
-  `Project_id` INT NOT NULL,
-  PRIMARY KEY (`name`, `Employee_bsn`, `Project_id`),
-  INDEX `fk_Position_Employee1_idx` (`Employee_bsn` ASC),
-  INDEX `fk_Position_in_Project1_idx` (`Project_id` ASC),
-  CONSTRAINT `fk_Position_Employee1`
-    FOREIGN KEY (`Employee_bsn`)
-    REFERENCES `assignment`.`Employees` (`bsn`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Position_in_Project1`
-    FOREIGN KEY (`Project_id`)
-    REFERENCES `assignment`.`Projects` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `fee_per_hour` VARCHAR(45) NULL,
+  PRIMARY KEY (`name`))
 ENGINE = InnoDB;
 
 
@@ -174,6 +160,36 @@ CREATE TABLE IF NOT EXISTS `assignment`.`Employee_lives_at_Address` (
   CONSTRAINT `fk_Lives_at_Adress1`
     FOREIGN KEY (`Adress_country` , `Adress_postal code`)
     REFERENCES `assignment`.`Addresses` (`country` , `postal code`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `assignment`.`Employee_has_Position_in_Project`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `assignment`.`Employee_has_Position_in_Project` ;
+
+CREATE TABLE IF NOT EXISTS `assignment`.`Employee_has_Position_in_Project` (
+  `Positions_name` VARCHAR(45) NOT NULL,
+  `Employees_bsn` INT(10) NOT NULL,
+  `Projects_id` INT ZEROFILL NOT NULL,
+  PRIMARY KEY (`Positions_name`, `Employees_bsn`, `Projects_id`),
+  INDEX `fk_Employee_has_Position_in_Project_Employees1_idx` (`Employees_bsn` ASC),
+  INDEX `fk_Employee_has_Position_in_Project_Projects1_idx` (`Projects_id` ASC),
+  CONSTRAINT `fk_Employee_has_Position_in_Project_Positions1`
+    FOREIGN KEY (`Positions_name`)
+    REFERENCES `assignment`.`Positions` (`name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Employee_has_Position_in_Project_Employees1`
+    FOREIGN KEY (`Employees_bsn`)
+    REFERENCES `assignment`.`Employees` (`bsn`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Employee_has_Position_in_Project_Projects1`
+    FOREIGN KEY (`Projects_id`)
+    REFERENCES `assignment`.`Projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

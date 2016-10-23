@@ -3,11 +3,16 @@ package nl.hro.assignment1.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
+import java.lang.annotation.Target;
 
 @Entity
 @Table(name = "headquarters")
-public class Headquarter {
+public class Headquarter implements Serializable {
 
     @Id
     @Column(name = "name", unique = true, nullable = false)
@@ -19,24 +24,25 @@ public class Headquarter {
     @Column(name = "rent")
     private double rent;
 
-    @Column(name = "Address_country")
-    private String addressCountry;
+    @OneToOne(targetEntity = Address.class)
+    @JoinColumns({
+            @JoinColumn(name = "Address_postal_code", referencedColumnName = "postal_code"),
+            @JoinColumn(name = "Address_country", referencedColumnName = "country")
+    })
+    private Address address;
 
-    @Column(name = "Address_postal_code")
-    private String addressPostalCode;
-
-    @Column(name = "Project_id")
+    @OneToOne(targetEntity = Project.class)
+    @JoinColumn(name = "Project_id")
     private int projectID;
 
     public Headquarter() {
     }
 
-    public Headquarter(String name, int rooms, double rent, String addressCountry, String addressPostalCode, int projectID) {
+    public Headquarter(String name, int rooms, double rent, Address address, int projectID) {
         this.name = name;
         this.rooms = rooms;
         this.rent = rent;
-        this.addressCountry = addressCountry;
-        this.addressPostalCode = addressPostalCode;
+        this.address = address;
         this.projectID = projectID;
     }
 
@@ -64,20 +70,12 @@ public class Headquarter {
         this.rent = rent;
     }
 
-    public String getAddressCountry() {
-        return addressCountry;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressCountry(String addressCountry) {
-        this.addressCountry = addressCountry;
-    }
-
-    public String getAddressPostalCode() {
-        return addressPostalCode;
-    }
-
-    public void setAddressPostalCode(String addressPostalCode) {
-        this.addressPostalCode = addressPostalCode;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public int getProjectID() {
@@ -110,8 +108,7 @@ public class Headquarter {
                 "name='" + name + '\'' +
                 ", rooms=" + rooms +
                 ", rent=" + rent +
-                ", addressCountry='" + addressCountry + '\'' +
-                ", addressPostalCode='" + addressPostalCode + '\'' +
+                ", address=" + address +
                 ", projectID=" + projectID +
                 '}';
     }

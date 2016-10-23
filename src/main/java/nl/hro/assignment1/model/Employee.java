@@ -17,17 +17,18 @@ public class Employee implements Serializable {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "Headquarters_name")
-    private String headquartersName;
+    @OneToOne(targetEntity = Headquarter.class)
+    @JoinColumn(name = "Headquarters_name")
+    private Headquarter headquarter;
 
     public Employee() {
     }
 
-    public Employee(int bsn, String name, String surname, String headquartersName) {
+    public Employee(int bsn, String name, String surname, Headquarter hq) {
         this.bsn = bsn;
         this.name = name;
         this.surname = surname;
-        this.headquartersName = headquartersName;
+        this.headquarter = hq;
     }
 
     public int getBsn() {
@@ -54,12 +55,12 @@ public class Employee implements Serializable {
         this.surname = surname;
     }
 
-    public String getHeadquartersName() {
-        return headquartersName;
+    public Headquarter getHeadquarter() {
+        return headquarter;
     }
 
-    public void setHeadquartersName(String headquartersName) {
-        this.headquartersName = headquartersName;
+    public void setHeadquarter(Headquarter headquarter) {
+        this.headquarter = headquarter;
     }
 
     @Override
@@ -84,7 +85,7 @@ public class Employee implements Serializable {
                 "bsn=" + bsn +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", headquartersName='" + headquartersName + '\'' +
+                ", headquarter=" + headquarter +
                 '}';
     }
 }

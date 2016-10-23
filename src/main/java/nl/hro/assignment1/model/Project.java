@@ -1,14 +1,26 @@
 package nl.hro.assignment1.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
 /**
  * Created by marcel on 23-10-2016.
  */
-public class Project {
+@Entity
+@Table(name = "projects")
+public class Project implements Serializable{
 
+    @Id
+    @Column(name = "id", nullable = false, unique = true)
     private int id;
 
+    @Column(name = "budget")
     private double budget;
 
+    @Column(name = "allocated_hours")
     private int allocatedHours;
 
     public Project() {
